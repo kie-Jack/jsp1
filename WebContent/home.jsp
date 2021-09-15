@@ -1,3 +1,4 @@
+<%@page import="day1.MyUser"%>
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,6 +9,7 @@
 <title>HOME</title>
 </head>
 <body>
+	
 	<!-- HTML 파일과 JSP 파일의 다른점 
 	page 지시자 : java 프로그래밍 -> 웹애플리케이션 서버(WAS) -> 서버가 컴파일 -> html 문서 응답
 	
