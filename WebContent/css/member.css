@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
+*{
+    font-family: 'Gamja Flower', cursive;
+}
+td{
+    border: 1px solid salmon;
+    background-color: peachpuff;
+    border-radius: 5px;
+}
+
+/* 속성을 이용한 선택자 */
+
+input, select{
+    padding: 7px;
+    border-radius: 4px;
+    border-block-color: rgb(235, 30, 40);
+    border-inline-color: inherit;
+    background-color: darksalmon;
+    
+}
+input[type=submit], input[type=reset]{   /* input 중에 submit, reset 인것만 변경  */
+    cursor:pointer;
+    border: none;
+    background-color: lightsalmon;
+}
+
+input[type=submit]:hover,input[type=reset]:hover{
+    background-color: coral;
+}   
+
+input[type=text],input[type=password],input[type=email]{
+    width:70%;
+}
+
+/* 
+    UI 구현 : 레이아웃, 색상, 글꼴
+*/

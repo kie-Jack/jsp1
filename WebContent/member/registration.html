@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Day3[2] - db 회원등록 </title>
+    <link rel=stylesheet href="../css/member.css?v=3">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" 
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+     crossorigin="anonymous">
+     <script>
+        function validCheck(){
+            const frm = document.frmReg;
+
+            //1. 비밀번호 : 8자 이상.
+            if(frm.password.value.length < 8){
+                alert('비밀번호는 8자 이상이어야 합니다.');
+                frm.password.focus();           //포커스(커서) 이동
+                return false;               //함수가 종료
+            }
+            //2. 나이 : 태그 min, max 무시 -> 20 ~ 70 값 범위로 검사
+            if(frm.age.value < 20 || frm.age.value > 70){   //return false할 조건을 작성. 이 위치는 위의 조건이 거짓일 때만 실행.
+                alert('나이는 20세이상에서 70세 이하로만 가능합니다.');
+                frm.age.focus();
+                return false;
+            }
+
+            for(let i=0; i<frmReg.hobby.length; i++){
+                if(frmReg.hobby[i].checked){        //checked 속성은 선택되어 있을 때 true
+                    return true;    
+                }
+            }
+
+            //체크한 항목이 한개도 없으면 여기와서 실행
+            alert('취미를 1개라도 선택해 주세요.');
+            return false;
+
+        }
+     </script>
+</head>
+
+<body>
+    <div style="width:70%; margin: auto;">
+        <h2 style="background-color: brown;font-size: 40px;color:white;">
+            <i class="fas fa-address-book"></i>  <!-- font icon -->
+        </h2>
+        <h3>회원등록</h3>                               
+        <form action="registration.jsp" name="frmReg" method="post">       
+            <table style="width:100%; margin: auto;">
+                <tr>
+                    <td><label>이름</label></td>    <!-- required 필수 입력, readonly 읽기전용 -->
+                    <td><input type="text" name="name" placeholder="이름 입력(필수)" required></td>
+                </tr>
+                <tr>
+                    <td><label>패스워드</label></td>
+                    <td><input type="password" name="password" placeholder="8자 이상 20자이하로 입력" required></td>
+                </tr>
+                <tr>
+                    <td><label>이메일</label></td>
+                    <td><input type="email" name="email"></td>
+                </tr>
+                <tr>
+                    <td><label>나이</label></td>
+                    <td><input type="number" name="age" min="10" max="99" value = "30"></td>    <!-- value는 기본값. type="number" 일 때는 min, max 속성 설정가능 -->
+                </tr>
+                <tr>
+                    <td><label>주소</label></td>
+                    <td>
+                        <!-- 선택 리스트 만들기 위해 select 태그 사용 -->
+                        <select name="addr" id="addr_select">
+                            <!-- option 태그안에 문자열은 화면에 보이는것, 
+                            value안에 문자열은 서버로 전송되는 값 -->
+                            <option value="서울" selected>서울</option> <!-- selected는 기본 선택 값. -->
+                            <option value="인천">인천</option>
+                            <option value="대전">대전</option>
+                            <option value="광주">광주</option>
+                            <option value="부산">부산</option>
+                            <option value="기타">기타</option>
+                        </select>
+                        <span id="addr_id">
+                        <!-- disabled="disabled"는 파라미터 값 전달에서 제외됩니다. -->
+                        <input type="text" name="addr_etc" disabled="disabled" 
+							placeholder="기타 지역을 입력하세요." >
+					</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>성별</label></td>
+                    <td>
+                        <!-- radio 버튼은 여러개 중에 하나만 선택할 때 사용합니다.
+                        name을 같게 해야 합니다. -->
+                        <input type="radio" value="male" name="gender" id="male" checked>   <!-- checked는 기본 선택 -->
+                        <label for="남자">남자</label>
+                        <!-- label과 연결시킬 input은 id속성이 필요합니다. 웹접근성 구현
+                            label 을 선택해서 해당 form 요소가 focus를 갖도록 합니다. -->
+                        <input type="radio" value="female" name="gender">
+                        <label for="여자">여자</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>취미</label></td>
+                    <td>    <!-- checkbox 도 checked 는 기본선택 -->
+                        <!-- 복수 선택이 가능: hobby 이름이 같고 선택 여러개 하면 선택한 값은 배열로 저장 -->
+                        <input type="checkbox" name="hobby" value="축구" id="football">
+                        <label for="football">축구</label>
+                        <input type="checkbox" name="hobby" value="농구" id="basketball" checked>
+                        <label for="basketball">농구</label>
+                        <input type="checkbox" name="hobby" value="스키" id="ski">
+                        <label for="ski">스키</label>
+                        <input type="checkbox" name="hobby" value="달리기" id="running">
+                        <label for="running">달리기</label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" value="가입하기"> 
+                        <!-- submit : 서버에게 데이터를 제출(form action 속성값에 설정된 url로 데이터 전달.)
+                            action이 .html은 데이터 전송확인은 못합니다. url 이동만 확인!-->
+                            <input type="reset" value="다시쓰기">
+                    </td>
+                </tr>                
+        </form>
+    </div>
+    <script type="text/javascript">
+	document.getElementById("addr_select").addEventListener("change",function(){
+		if(this.value=="기타"){  //this는 getElementById("addr_select") 요소
+//			document.getElementById("addr_id").style.display="inline-block";   //화면에 보임
+			document.frmReg.addr_etc.disabled=false;
+		}else {
+//			document.getElementById("addr_id").style.display="none";		//화면에  안보임.
+			document.frmReg.addr_etc.disabled=true;
+		}
+		
+	});
+	</script>
+</body>
+
+</html>
