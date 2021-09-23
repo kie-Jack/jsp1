@@ -19,7 +19,8 @@
 	<!-- cus 는 Customer 타입객체. idx,name,email .... 은 프로퍼티. getter없으면 값을 가져올수 없음. -->
 					${cus.name}</a> 님</li>
 	<li id="email">${cus.email}</li>
-	<li>${cus.age} 세 (${cus.gender}) </li>
+	<li>${cus.age} 세 (${cus.gender eq 'male' ? '남' : '여'}) </li>
+	<!-- EL은 문자열 같은지 비교할때 eq 연산자 사용합니다. -->
 	<li>${cus.addr }</li>
 	<li id="hobby">${cus.hobby}</li>
 </ul>
