@@ -18,13 +18,13 @@ input, select{
     background-color: darksalmon;
     
 }
-input[type=submit], input[type=reset]{   /* input 중에 submit, reset 인것만 변경  */
+input[type=submit], input[type=reset], input[type=button]{   /* input 중에 submit, reset 인것만 변경  */
     cursor:pointer;
     border: none;
     background-color: lightsalmon;
 }
 
-input[type=submit]:hover,input[type=reset]:hover{
+input[type=submit]:hover,input[type=reset]:hover,input[type=button]:hover{
     background-color: coral;
 }   
 

@@ -48,7 +48,8 @@
 	for(Customer cus : list) {
 %>
 <ul>
-	<li id="name"><%= cus.getName() %> 님</li>
+	<li id="name"><a href="update.jsp?idx=<%=cus.getIdx()%>">
+					<%= cus.getName() %></a> 님</li>
 	<li id="email"><%= cus.getEmail() %></li>
 	<li><%= cus.getAge() %> 세 (<%= (cus.getGender().equals("male")? "남":"여") %>) </li>
 	<li><%= cus.getAddr() %></li>

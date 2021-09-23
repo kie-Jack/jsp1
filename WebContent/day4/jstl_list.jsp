@@ -8,7 +8,7 @@
 	CustomerDao dao = CustomerDao.getInstance();
 	List<Customer> list = dao.selectAll();
 	request.setAttribute("list", list);
-	pageContext.forward("list_view.jsp");		//view : 화면출력을 위해서 작성되는 파일.
+	pageContext.forward("jstl_view.jsp");		//view : 화면출력을 위해서 작성되는 파일.
 %>
 
 
