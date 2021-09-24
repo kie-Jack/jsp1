@@ -1,10 +1,11 @@
-<%@page import="day3.dao.CustomerDao"%>
+<%@page import="day5.dao.MybatisDao"%>
 <%@page import="day3.dto.Customer"%>
+<%@page import="day3.dao.CustomerDao"%>
 <%@page import="java.util.Arrays"%>
+<%@page import="lombok.ToString"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	//서버에서 데이터 처리를 위한 자바코드
 	request.setCharacterEncoding("UTF-8");
 	String name = request.getParameter("name");   
 	String email = request.getParameter("email");
@@ -20,12 +21,11 @@
 			
 	String password = request.getParameter("password");
 	Customer cus = new Customer(0,name,password,email,addr,gender,age,hobbies);		
-	CustomerDao dao = CustomerDao.getInstance();
-	dao.insert(cus); 
-	//1) 추가된 회원정보만 확인하기 . 요청전달. 아래 개의 명령어가 항상 같이 나옵니다.
-//	request.setAttribute("cus", cus);
-//	pageContext.forward("registration_view.jsp");
-	//2) 사용자가 요청하지 않았지만 회원리스트 list.jsp 로 요청 바꾸기. 현재 registration.jsp 에서 list.jsp로 변경.
-	response.sendRedirect("list.jsp");    //응답을 보낼 때 새롭게 요청될 url 또는 파일을 지정합니다. 
-	//응답 객체로 실행합니다.
+	MybatisDao dao = MybatisDao.getInstance();	
+	
+	int idx = dao.insert(cus); cus.setIdx(idx);
+	
+	request.setAttribute("cus", cus);			//여기서 cus 객체는 idx값이 0인 상태
+	pageContext.forward("registration_view.jsp");
 %>
+

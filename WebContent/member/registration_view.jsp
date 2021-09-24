@@ -1,30 +1,26 @@
-<%@page import="day3.dto.Customer"%>
 <%@page import="day3.dao.CustomerDao"%>
+<%@page import="day3.dto.Customer"%>
 <%@page import="java.util.Arrays"%>
-<%@page import="lombok.ToString"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Day3[3] - db 회원 등록</title>
-
+<title>Day3[]- db 회원 등록</title>
 <style>
-	html{
-	background-color:salmon;
+	ul{
+		list-style: none;
+		padding-inline-start:0px;  /* 목록 들여쓰기 없애기 */
 	}
-	name{
-	backgournd-color:turquoise;
+	ul #name{
+		padding : 5px  20px;
+		margin : 5px 0px;
+		background-color: tomato;
+		color:white;
 	}
-	h3{
-	fontSize: larger;
-	text-align : center;
-	color : beige;
-	}
-	li{
-	color : darkslateblue;
-	padding : 5px, 20px;
+	li {
+		padding : 5px  20px;
 	}
 </style>
 </head>
@@ -35,10 +31,10 @@
 <h3>환영합니다. WELCOME!!!</h3>
 <ul>
 	<li id="name"><%=cus.getName() %> 님</li>
-	<li><%= cus.getEmail()%></li>
+	<li><%= cus.getEmail() %></li>
 	<li><%=cus.getAge() %>세 (<%= (cus.getGender().equals("male")? "남":"여") %>) </li>
-	<li><%=cus.getAddr() %></li>
-	<li><%= cus.getHobby() %></li>
+	<li>지역 : <%=cus.getAddr() %></li>
+	<li>취미 : <%= cus.getHobby() %></li>
 </ul>
 <a href="list.jsp">회원 리스트</a>
 </body>
